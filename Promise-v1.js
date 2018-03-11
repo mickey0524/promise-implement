@@ -1,6 +1,5 @@
 function Promise(fn) {
-  var value = null,
-    callbacks = [];
+  var callbacks = [];
   
   this.then = (onFulfilled) => {
     callbacks.push(onFulfilled);
