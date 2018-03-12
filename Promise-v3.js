@@ -1,3 +1,6 @@
+/**
+ * 增加state，用于处理在Promise resolve 之后通过then注册的回调函数
+ */
 function Promise(fn) {
   var state = pending,
     value = null,

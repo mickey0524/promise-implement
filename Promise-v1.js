@@ -1,3 +1,6 @@
+/**
+ * 最简单的Promise雏形
+ */
 function Promise(fn) {
   var callbacks = [];
   
