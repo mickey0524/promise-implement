@@ -30,8 +30,7 @@ function Promise(fn) {
       return;
     }
     ret = cb(value);
-    cb = cb === 'resolved' ? callback.resolve : callback.reject;
-    cb(ret);
+    callback.resolve(ret);
   }
   
   function resolve(newValue) {
