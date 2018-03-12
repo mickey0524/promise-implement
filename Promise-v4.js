@@ -11,7 +11,7 @@ function Promise(fn) {
   this.then = function(onFulfilled) {
     return new Promise(resolve => {
       handle({
-        onFulfilled: onFulfilled,
+        onFulfilled: onFulfilled || null,
         resolve: resolve,
       });
     });
