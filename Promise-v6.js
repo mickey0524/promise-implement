@@ -20,7 +20,7 @@ function Promise(fn) {
   this.catch = (onRejected) => {
     return new Promise((resolve, reject) => {
       handle({
-        onRejected: onRejected,
+        onRejected: onRejected || null,
         reject: reject
       });
     });
