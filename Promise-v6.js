@@ -11,8 +11,8 @@ function Promise(fn) {
       handle({
         onFulfilled: onFulfilled || null,
         onRejected: onRejected || null,
-        resolve, resolve,
-        reject, reject
+        resolve: resolve,
+        reject: reject
       });
     });
   }
