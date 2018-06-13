@@ -27,7 +27,7 @@ function Promise(fn) {
 
 ## promise-version-2
 
-v1的promise中如果执行的是同步代码的话，还没等执行then函数绑定回调函数就resolve了，这样callbacks中的回调函数就不会得到执行，可以利用setTimeout(() => {}, 0)将callbacks中函数的执行放到这次事件循环的末尾，同时在then函数中return this返回当前实例，便于链式调用
+v1的promise中如果执行的是同步代码的话，还没等执行then函数绑定回调函数就resolve了，这样callbacks中的回调函数就不会得到执行，可以利用setTimeout(() => {}, 0)将callbacks中函数的执行放到这次事件循环的末尾，同时在then函数中return this返回当前实例，便于链式调用
 
 ```js
 /**
@@ -56,7 +56,7 @@ function Promise(fn) {
 
 ## promise-version-3
 
-v2中的promise在resolve之后通过then绑定上的回调函数是不会被执行的，因为错过了foreach的时间点，增加value变量记录resolve的参数以及state变量记录当前promise实例的状态，用于决定通过then方法绑定的回调函数的执行形式，如果当前还在pending状态，则回调函数存入callbacks，如果已经是resolved的状态，则立即执行
+v2中的promise在resolve之后通过then绑定上的回调函数是不会被执行的，因为错过了foreach的时间点，增加value变量记录resolve的参数以及state变量记录当前promise实例的状态，用于决定通过then方法绑定的回调函数的执行形式，如果当前还在pending状态，则回调函数存入callbacks，如果已经是resolved的状态，则立即执行
 
 ```js
 /**
@@ -106,7 +106,7 @@ new Promise((resolve) => {
 v3版本的promise的输出应该是 1 1，而真正的promise的输出应该是 1 undefined
 ```
 
-因此，then函数不应该返回当前的promise实例，而应该返回一个新创建的桥接promise实例，当then函数绑定的回调函数返回的也是一个promise实例的时候，最关键的在于要将桥接promise的resolve挂在then函数的参数返回的promise上，这样才能完成链式传值
+因此，then函数不应该返回当前的promise实例，而应该返回一个新创建的桥接promise实例，当then函数绑定的回调函数返回的也是一个promise实例的时候，最关键的在于要将桥接promise的resolve挂在then函数的参数返回的promise上，这样才能完成链式传值
 
 ```js
 /**
@@ -164,7 +164,7 @@ function Promise(fn) {
 
 ## promise-version-5
 
-v4的promise算是一个比较完备的实现了，我们知道真正的promise的then函数是可以传入两个参数的，一个用于执行resolved的回调，另外一个用于执行rejected的回调，在此版本中，我们增加rejected状态，同时实现then函数传入两个参数的需求
+v4的promise算是一个比较完备的实现了，我们知道真正的promise的then函数是可以传入两个参数的，一个用于执行resolved的回调，另外一个用于执行rejected的回调，在此版本中，我们增加rejected状态，同时实现then函数传入两个参数的需求
 
 ```js
 
@@ -236,7 +236,7 @@ function Promise(fn) {
 
 ## promise-version-6
 
-v5版本只能通过then函数的第二个参数来捕捉错误，这是es6中不推荐的方法，es6推荐使用catch来捕捉错误，在此版本中，我们实现了catch方法
+v5版本只能通过then函数的第二个参数来捕捉错误，这是es6中不推荐的方法，es6推荐使用catch来捕捉错误，在此版本中，我们实现了catch方法
 
 ```js
 /**
@@ -317,4 +317,4 @@ function Promise(fn) {
 
 ## 总结
 
-通过阅读源码，实现copy版本以及撰写博客，让我对promise的理解变得更深了，希望对各位看官有所帮助～
+通过阅读源码，实现copy版本以及撰写博客，让我对promise的理解变得更深了，希望对各位看官有所帮助～
